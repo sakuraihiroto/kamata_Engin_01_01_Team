@@ -59,10 +59,16 @@ private:
 	//弾
 	std::list<std::unique_ptr<PlayerBullet>>bullets_;
 	//発射フラグ
-	int shootFlag = 0;
+	bool shootFlag = 0;
 	//タイマー
 	float timer = 0;
 	//軌道フラグ
-	int changeFlag = 0;
+	bool changeFlag = 0;
+	//速度
+	Vector3 velocity_;
+	//弾の速度
+	float kBulletSpeed_Y = 0.2f; //Yスピード
+	float kBulletSpeed_X = 0.2f; //Xスピード
+	
 
 };

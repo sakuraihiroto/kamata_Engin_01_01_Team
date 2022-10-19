@@ -5,13 +5,12 @@
 #include "matWorld.h"
 #include "DebugText.h"
 
-
 class PlayerBullet {
 public:
 
-	void Initialize(Model* model, const Vector3& position, const Vector3& velocity);
+	void Initialize(Model* model, const Vector3& position);
 
-	void Update();
+	void Update(Vector3& velocity, bool& shootFlag, bool& changeFlag);
 
 	void Draw(const ViewProjection& viewProjection);
 
@@ -42,4 +41,10 @@ private:
 
 	//デスフラグ
 	bool isDead_ = false;
+
+	//発射フラグ
+	bool shootFlag_ = 0;
+
+	//軌道フラグ
+	bool changeFlag_ = 0;
 };
