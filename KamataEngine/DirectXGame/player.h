@@ -45,6 +45,8 @@ public:
 	//衝突判定
 	void OnCollision();
 
+	void ResetFlag();
+
 private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;

@@ -10,7 +10,7 @@ void Enemy::Initialize(Model* model, const Vector3& position) {
 	model_ = model;
 
 	//テクスチャ読み込み
-	textureHandle_ = TextureManager::Load("Enemy.jpg");
+	textureHandle_ = TextureManager::Load("Enemy.png");
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();

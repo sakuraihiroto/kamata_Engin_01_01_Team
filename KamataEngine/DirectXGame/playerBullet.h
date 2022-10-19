@@ -41,10 +41,4 @@ private:
 
 	//デスフラグ
 	bool isDead_ = false;
-
-	//発射フラグ
-	bool shootFlag_ = 0;
-
-	//軌道フラグ
-	bool changeFlag_ = 0;
 };

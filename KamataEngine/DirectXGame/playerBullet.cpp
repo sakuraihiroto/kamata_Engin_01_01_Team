@@ -12,8 +12,6 @@ void PlayerBullet::Initialize(Model* model, const Vector3& position )
 	//テクスチャ読み込み
 	textureHandle_ = TextureManager::Load("tama.jpg");
 
-	
-
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
 
@@ -37,14 +35,10 @@ Vector3 PlayerBullet::GetWorldPosition()
 	return worldPos;
 }
 
-
-
 void PlayerBullet::Update(Vector3& velocity, bool& shootFlag, bool& changeFlag)
 {
 	// 引数で受け取った速度をメンバ変数に代入
 	velocity_ = velocity;
-	shootFlag_ = shootFlag;
-	changeFlag_ = changeFlag;
 
 	// 座標を移動させる(1フレーム分の移動量を足しこむ)
 	worldTransform_.translation_ += velocity_;
@@ -56,7 +50,6 @@ void PlayerBullet::Update(Vector3& velocity, bool& shootFlag, bool& changeFlag)
 		shootFlag = 0;
 		changeFlag = 0;
 	}
-
 
 	//行列の計算
 	worldTransform_.matWorld_ = bulletMatworld->CreateMatWorld(worldTransform_);
@@ -72,9 +65,8 @@ void PlayerBullet::Update(Vector3& velocity, bool& shootFlag, bool& changeFlag)
 //衝突判定
 void PlayerBullet::OnCollision()
 {
-	/*isDead_ = true;*/
+	isDead_ = true;
 }
-
 
 void PlayerBullet::Draw(const ViewProjection& viewProjection)
 {

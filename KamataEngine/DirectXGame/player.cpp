@@ -38,6 +38,12 @@ Vector3 Player::GetWorldPosition()
 	return worldPos;
 }
 
+//’e‚Æ“G‚ª“–‚½‚Á‚½‚Ìƒtƒ‰ƒO‚Ì‰Šú‰»
+void Player::ResetFlag()
+{
+	shootFlag = 0;
+	changeFlag = 0;
+}
 
 //Õ“Ë”»’è
 void Player::OnCollision()
