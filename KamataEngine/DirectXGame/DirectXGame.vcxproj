@@ -105,6 +105,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerBullet.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
+    <ClCompile Include="skydome.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\DebugText.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="playerBullet.h" />
     <ClInclude Include="scene\GameScene.h" />
+    <ClInclude Include="skydome.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">

@@ -11,6 +11,8 @@
 #include "WorldTransform.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Skydome.h"
+#include "WinApp.h"
 
 /// <summary>
 /// ゲームシーン
@@ -64,6 +66,7 @@ private: // メンバ変数
 
 	//3Dモデル
 	Model* model_ = nullptr;
+	Model* modelSkydome_ = nullptr;
 
 	//ワールドトランスフォーム
 	WorldTransform worldTransform_;
@@ -72,6 +75,14 @@ private: // メンバ変数
 
 	//自キャラ
 	Player* player_ = nullptr;
-	//敵キャラ
-	Enemy* enemy_ = nullptr;
+	//敵
+	std::list<std::unique_ptr<Enemy>>enemies_;
+	//天球
+	Skydome* skydome_ = nullptr;
+	//画面
+	WinApp* winApp_ = nullptr;
+
+	float i = 1;
+	float x = 1;
+	int time = 60;
 };

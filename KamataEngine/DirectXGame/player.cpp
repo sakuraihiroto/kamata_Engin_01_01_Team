@@ -48,7 +48,7 @@ void Player::ResetFlag()
 //衝突判定
 void Player::OnCollision()
 {
-
+	hp -= 1;
 }
 
 //プレイヤーの攻撃処理
@@ -90,6 +90,10 @@ void Player::Attack()
 	debugText_->SetPos(80, 260);
 	debugText_->Printf(
 		"changeflag(%d)", changeFlag);
+	//デバックテキスト
+	debugText_->SetPos(80, 280);
+	debugText_->Printf(
+		"HP(%d)", hp);
 }
 
 //アップデート
@@ -124,7 +128,7 @@ void Player::Update()
 	// 弾更新
 	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
 	{
-		bullet->Update(velocity_,shootFlag,changeFlag);
+		bullet->Update(velocity_, shootFlag, changeFlag);
 	}
 }
 

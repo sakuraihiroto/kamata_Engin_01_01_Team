@@ -5,7 +5,6 @@
 #include"Model.h"
 #include"matWorld.h"
 #include"player.h"
-#include <assert.h>
 
 class Enemy
 {
@@ -31,6 +30,7 @@ public:
 	// ワールド座標を取得
 	Vector3 GetWorldPosition();
 
+	bool IsDead() const { return isDead_; }
 private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
@@ -40,7 +40,7 @@ private:
 	uint32_t textureHandle_ = 0u;
 	//速度
 	Vector3 velocity_;
-	//衝突フラグ
-	int shootFlag = 0;
+	//デスフラグ
+	bool isDead_ = false;
 
 };

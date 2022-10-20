@@ -3,7 +3,7 @@
 
 MatWorld* bulletMatworld = nullptr;
 
-void PlayerBullet::Initialize(Model* model, const Vector3& position )
+void PlayerBullet::Initialize(Model* model, const Vector3& position)
 {
 	//NULLポインタチェック
 	assert(model);
@@ -45,6 +45,22 @@ void PlayerBullet::Update(Vector3& velocity, bool& shootFlag, bool& changeFlag)
 
 	//y座標が21超えたら消える
 	if (worldTransform_.translation_.y > 21)
+	{
+		isDead_ = true;
+		shootFlag = 0;
+		changeFlag = 0;
+	}
+
+	//x座標が-37超えたら消える
+	if (worldTransform_.translation_.x < -37)
+	{
+		isDead_ = true;
+		shootFlag = 0;
+		changeFlag = 0;
+	}
+
+	//x座標が37超えたら消える
+	if (worldTransform_.translation_.x > 37)
 	{
 		isDead_ = true;
 		shootFlag = 0;

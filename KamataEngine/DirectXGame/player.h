@@ -69,8 +69,8 @@ private:
 	//速度
 	Vector3 velocity_;
 	//弾の速度
-	float kBulletSpeed_Y = 0.2f; //Yスピード
-	float kBulletSpeed_X = 0.2f; //Xスピード
-	
-
+	float kBulletSpeed_Y = 0.1f; //Yスピード
+	float kBulletSpeed_X = 0.3f; //Xスピード
+	//残機
+	int hp = 3;
 };
