@@ -14,6 +14,8 @@
 #include "Skydome.h"
 #include "WinApp.h"
 
+
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -67,6 +69,9 @@ private: // メンバ変数
 	//3Dモデル
 	Model* model_ = nullptr;
 	Model* modelSkydome_ = nullptr;
+	Model* modelPlayer_ = nullptr;
+	Model* modelPlayerBullet_ = nullptr;
+	Model* modelEnemy_ = nullptr;
 
 	//ワールドトランスフォーム
 	WorldTransform worldTransform_;
@@ -75,6 +80,8 @@ private: // メンバ変数
 
 	//自キャラ
 	Player* player_ = nullptr;
+	//自キャラの弾
+	PlayerBullet* playerBullet_ = nullptr;
 	//敵
 	std::list<std::unique_ptr<Enemy>>enemies_;
 	//天球
@@ -84,5 +91,16 @@ private: // メンバ変数
 
 	float i = 1;
 	float x = 1;
-	int time = 60;
+
+	int time = 70;
+	int time2 = -1;
+	int time3 = 60;
+	int time4 = -1;
+	int time5 = -1;
+
+	int enemyNum = 0;
+	//死んだ敵の数
+	int deadEnemyNum = 0;
+	int left = 0;
+	int Wave = 1;
 };

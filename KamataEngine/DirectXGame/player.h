@@ -29,7 +29,7 @@ public:
 	/// 描画
 	/// </summary>
 	/// <param name="">ビュープロジェクション</param>
-	void Draw(ViewProjection& viewprjection);
+	void Draw(ViewProjection &viewProjection_);
 
 	/// <summary>
 	/// 攻撃
@@ -60,6 +60,10 @@ private:
 	DebugText* debugText_ = nullptr;
 	//弾
 	std::list<std::unique_ptr<PlayerBullet>>bullets_;
+
+	PlayerBullet* playerBullet_ = nullptr;
+
+	Model* modelPlayerBullet_ = nullptr;
 	//発射フラグ
 	bool shootFlag = 0;
 	//タイマー

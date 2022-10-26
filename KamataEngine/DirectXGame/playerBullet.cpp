@@ -5,12 +5,11 @@ MatWorld* bulletMatworld = nullptr;
 
 void PlayerBullet::Initialize(Model* model, const Vector3& position)
 {
+	
 	//NULLポインタチェック
 	assert(model);
 
 	model_ = model;
-	//テクスチャ読み込み
-	textureHandle_ = TextureManager::Load("tama.jpg");
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
@@ -72,10 +71,10 @@ void PlayerBullet::Update(Vector3& velocity, bool& shootFlag, bool& changeFlag)
 	//行列の転送
 	worldTransform_.TransferMatrix();
 
-	//デバックテキスト
-	debugText_->SetPos(80, 160);
-	debugText_->Printf(
-		"bullet(Y:%f)", worldTransform_.translation_.y);
+	////デバックテキスト
+	//debugText_->SetPos(80, 160);
+	//debugText_->Printf(
+	//	"bullet(Y:%f)", worldTransform_.translation_.y);
 }
 
 //衝突判定
@@ -84,7 +83,8 @@ void PlayerBullet::OnCollision()
 	isDead_ = true;
 }
 
+//描画処理
 void PlayerBullet::Draw(const ViewProjection& viewProjection)
 {
-	model_->Draw(worldTransform_, viewProjection, textureHandle_);
+	model_->Draw(worldTransform_, viewProjection);
 }
