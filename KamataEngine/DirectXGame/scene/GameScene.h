@@ -68,11 +68,10 @@ private: // メンバ変数
 
 	//3Dモデル
 	Model* model_ = nullptr;
-	Model* modelSkydome_ = nullptr;
-	Model* modelPlayer_ = nullptr;
-	Model* modelPlayerBullet_ = nullptr;
-	Model* modelEnemy_ = nullptr;
-
+	Model* modelSkydome_ = nullptr; //ゲーム背景モデル
+	Model* modelPlayer_ = nullptr; //プレイヤーモデル
+	Model* modelEnemy_ = nullptr; //敵モデル
+	
 	//ワールドトランスフォーム
 	WorldTransform worldTransform_;
 	//ビュープロジェクション
@@ -89,18 +88,19 @@ private: // メンバ変数
 	//画面
 	WinApp* winApp_ = nullptr;
 
-	float i = 1;
-	float x = 1;
+	int scene = 0;
 
 	int time = 70;
 	int time2 = -1;
 	int time3 = 60;
-	int time4 = -1;
-	int time5 = -1;
+	int time4 = 60;
 
 	int enemyNum = 0;
 	//死んだ敵の数
 	int deadEnemyNum = 0;
 	int left = 0;
 	int Wave = 1;
+
+	//残機
+	int hp = 3;
 };

@@ -18,7 +18,7 @@ public:
 	/// </summary>
 	/// <pragma name="model">モデル</param>
 	/// <pragma name="textureHandle">テクスチャハンドル</param>
-	void Initialize(Model* model, const Vector3& position);
+	void Initialize(Model* model);
 
 	///<summary>
 	///更新
@@ -43,13 +43,17 @@ public:
 	Vector3 GetWorldPosition();
 
 	//衝突判定
-	void OnCollision();
+	void OnCollision(int &hp);
 
 	void ResetFlag();
 
 private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
+	WorldTransform hp_1;
+	WorldTransform hp_2;
+	WorldTransform hp_3;
+
 	// モデル
 	Model* model_ = nullptr;
 	// テクスチャハンドル
@@ -64,6 +68,7 @@ private:
 	PlayerBullet* playerBullet_ = nullptr;
 
 	Model* modelPlayerBullet_ = nullptr;
+	
 	//発射フラグ
 	bool shootFlag = 0;
 	//タイマー
@@ -77,4 +82,5 @@ private:
 	float kBulletSpeed_X = 0.3f; //Xスピード
 	//残機
 	int hp = 3;
+
 };
