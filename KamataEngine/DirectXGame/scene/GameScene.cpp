@@ -58,6 +58,12 @@ void GameScene::Initialize() {
 	//敵キャラモデルの生成
 	modelEnemy_ = Model::CreateFromOBJ("bat_TD2", true);
 
+	//サウンドデータの読み込み
+	soundTitleBGM = audio_->LoadWave("Audio/title.mp3");
+	soundPlayBGM = audio_->LoadWave("Audio/play.mp3");
+	soundGameOverBGM = audio_->LoadWave("Audio/game_over.mp3");
+	soundClearBGM = audio_->LoadWave("Audio/clear.mp3");
+
 	//ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 	//ビュープロジェクションの初期化
@@ -70,29 +76,72 @@ void GameScene::Update() {
 	switch (scene)
 	{
 	case 0:		//タイトル
+
+		
+
+		if (checkSoundFlag == 0)
+		{
+			//タイトルBGM再生
+			voiceTitleBGM = audio_->PlayWave(soundTitleBGM, true);
+			checkSoundFlag = 1;
+		}
+		
 		if (input_->TriggerKey(DIK_SPACE))
 		{
 			scene = 1;
+			checkSoundFlag = 0;
+			//タイトルBGM停止
+			audio_->StopWave(voiceTitleBGM);
 		}
 		break;
 	case 1:		//ゲームシーン
+
+		//ゲームオーバーBGM停止
+		audio_->StopWave(voiceGameOverBGM);
+		checkSoundFlag3 = 0;
+		
+		if (checkSoundFlag1 == 0)
+		{
+			//プレイBGM再生
+			voicePlayBGM = audio_->PlayWave(soundPlayBGM, true);
+
+			checkSoundFlag1 = 1;
+		}
 		if (deadEnemyNum == 18 && hp > 0)
 		{
 			scene = 2;		//ゲームクリア
+			checkSoundFlag1 = 0;
+			//プレイBGM停止
+			audio_->StopWave(voicePlayBGM);
 		}
 		else if (hp <= 0)
 		{
 			scene = 3;		//ゲームオーバー
+			checkSoundFlag1 = 0;
+			//プレイBGM停止
+			audio_->StopWave(voicePlayBGM);
 		}
 		break;
 	case 2:		//ゲームクリア
+
+		if (checkSoundFlag2 == 0)
+		{
+			//クリアBGM再生
+			voiceClearBGM = audio_->PlayWave(soundClearBGM, true);
+			
+			checkSoundFlag2 = 1;
+		}
+
 		if (input_->TriggerKey(DIK_SPACE))
 		{
-
 			for (std::unique_ptr<Enemy>& enemy : enemies_)
 			{
 				enemy->OnCollision(deadEnemyNum);
 			}
+			//クリアBGM停止
+		audio_->StopWave(voiceClearBGM);
+		checkSoundFlag2 = 0;
+
 			time = 70;
 			time2 = -1;
 			time3 = 60;
@@ -109,6 +158,14 @@ void GameScene::Update() {
 		}
 		break;
 	default://ゲームオーバー
+
+		if (checkSoundFlag3 == 0)
+		{
+			//クリアBGM再生
+			voiceGameOverBGM = audio_->PlayWave(soundGameOverBGM, true);
+	
+			checkSoundFlag3 = 1;
+		}
 		if (input_->TriggerKey(DIK_SPACE))
 		{
 			for (std::unique_ptr<Enemy>& enemy : enemies_)
@@ -131,6 +188,8 @@ void GameScene::Update() {
 		}
 		break;
 	}
+
+
 	if (scene == 1)
 	{
 		//自キャラの更新 

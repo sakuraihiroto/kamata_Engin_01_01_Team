@@ -13,7 +13,7 @@
 #include "Enemy.h"
 #include "Skydome.h"
 #include "WinApp.h"
-
+#include "Audio.h"
 
 
 /// <summary>
@@ -79,6 +79,22 @@ private: // メンバ変数
 	Model* modelPlayer_ = nullptr; //プレイヤーモデル
 	Model* modelEnemy_ = nullptr; //敵モデル
 	
+
+	//サウンド
+	uint32_t soundTitleBGM = 0; //タイトルBGM
+	uint32_t soundPlayBGM = 0; //プレイBGM
+	uint32_t soundGameOverBGM = 0; //ゲームオーバーBGM
+	uint32_t soundClearBGM = 0; //クリアBGM
+
+	uint32_t voiceTitleBGM = 0; //音声再生ハンドル
+	uint32_t voicePlayBGM = 0; 
+	uint32_t voiceGameOverBGM = 0; 
+	uint32_t voiceClearBGM = 0; 
+
+	int checkSoundFlag = 0;    //サウンドフラグ 
+	int checkSoundFlag1 = 0;
+	int checkSoundFlag2 = 0;
+	int checkSoundFlag3 = 0;
 	//ワールドトランスフォーム
 	WorldTransform worldTransform_;
 	//ビュープロジェクション
@@ -110,4 +126,7 @@ private: // メンバ変数
 
 	//残機
 	int hp = 3;
+
+	//音量
+	float volume = 0.05f;
 };
