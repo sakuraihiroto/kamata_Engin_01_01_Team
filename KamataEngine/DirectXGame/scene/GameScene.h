@@ -64,7 +64,14 @@ private: // メンバ変数
 	/// </summary>
 
 	//テクスチャハンドル
-	uint32_t textureHandle_ = 0;
+	uint32_t textureHandle_title = 0; //タイトル
+	uint32_t textureHandle_gameOver = 0; //ゲームオーバー
+	uint32_t textureHandle_clear = 0; //クリア
+
+	//スプライト
+	Sprite* sprite_title = nullptr; //タイトル
+	Sprite* sprite_gameOver = nullptr; //ゲームオーバー
+	Sprite* sprite_clear = nullptr; //クリア
 
 	//3Dモデル
 	Model* model_ = nullptr;

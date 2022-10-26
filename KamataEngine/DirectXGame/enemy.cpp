@@ -70,6 +70,40 @@ void Enemy::MoveRight(float& appSpeed)
 	}
 }
 
+void Enemy::MoveLeft2(float& appSpeed)
+{
+
+	//移動(ベクトルを加算)
+	worldTransform_.translation_.x += appSpeed;
+	if (count <= 0)
+	{
+		appSpeed -= speedX2;
+		count = 5;
+	}
+	if (worldTransform_.translation_.x <= -2)
+	{
+		count = 5;
+		speedX2 += 0.01f;
+		phase_ = Enemy::Phase::MoveRight2;
+	}
+}
+void Enemy::MoveRight2(float& appSpeed)
+{
+	worldTransform_.translation_.x += appSpeed;
+	if (count <= 0)
+	{
+		appSpeed += speedX2;
+		count = 5;
+	}
+	//移動(ベクトルを加算)
+	if (worldTransform_.translation_.x >= 2)
+	{
+		count = 5;
+		speedX2 += 0.01f;
+		phase_ = Enemy::Phase::MoveLeft2;
+	}
+}
+
 
 void Enemy::Initialize(Model* model, const Vector3& position) {
 
@@ -130,8 +164,10 @@ void Enemy::UpdateW2(int& left)
 	case Phase::MoveLeft:
 		MoveLeft(speedX);
 		break;
-	default:
+	case Phase::MoveRight://右移動
 		MoveRight(speedX);
+		break;
+	default:
 		break;
 	}
 	//行列の計算
@@ -142,7 +178,36 @@ void Enemy::UpdateW2(int& left)
 }
 void Enemy::UpdateW3()
 {
+	count--;
+	//移動パターン
 
+	switch (phase_) {
+	case Phase::Approach:
+		phase_ = Phase::MoveLeft2;
+		break;
+	case Phase::MoveLeft://
+		phase_ = Phase::MoveRight2;
+		break;
+	case Phase::MoveRight://右移動
+		phase_ = Phase::MoveLeft2;
+		break;
+	case Phase::MoveLeft2:
+		MoveLeft2(speedX);
+		break;
+	default:
+		MoveRight2(speedX);
+		break;
+	}
+	//座標を移動させる(1フレーム分の移動量を足しこむ)
+	worldTransform_.translation_.y += speedY;
+
+	//worldTransform_.translation_.x += speedX;
+
+	//行列の計算
+	worldTransform_.matWorld_ = enemyMatworld->CreateMatWorld(worldTransform_);
+
+	//行列の転送
+	worldTransform_.TransferMatrix();
 }
 //衝突判定
 void Enemy::OnCollision(int& deadEnemyNum)

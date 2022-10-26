@@ -58,8 +58,18 @@ void Player::ResetFlag()
 	changeFlag = 0;
 }
 
+void Player::ResetBullet()
+{
+	sceneFlag = 0;
+	shootFlag = 0;
+	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
+	{
+		bullet->OnCollision();
+	}
+}
+
 //衝突判定
-void Player::OnCollision(int &hp)
+void Player::OnCollision(int& hp)
 {
 	hp -= 1;
 }
@@ -68,7 +78,7 @@ void Player::OnCollision(int &hp)
 void Player::Attack()
 {
 	//スペースを押したら撃つ
-	if (input_->TriggerKey(DIK_SPACE))
+	if (input_->TriggerKey(DIK_SPACE) && sceneFlag == 1)
 	{
 		//弾の軌道
 		if (changeFlag == 0)
@@ -91,23 +101,6 @@ void Player::Attack()
 			shootFlag = 1; //発射フラグ		
 		}
 	}
-
-	////デバックテキスト
-	//debugText_->SetPos(80, 240);
-	//debugText_->Printf(
-	//	"timer(%f)", timer);
-	////デバックテキスト
-	//debugText_->SetPos(80, 200);
-	//debugText_->Printf(
-	//	"shootflag(%d)", shootFlag);
-	////デバックテキスト
-	//debugText_->SetPos(80, 260);
-	//debugText_->Printf(
-	//	"changeflag(%d)", changeFlag);
-	////デバックテキスト
-	//debugText_->SetPos(80, 280);
-	//debugText_->Printf(
-	//	"HP(%d)", hp);
 }
 
 //アップデート
@@ -115,7 +108,7 @@ void Player::Update()
 {
 	//弾の位置(まっすぐ)
 	velocity_.y = kBulletSpeed_Y;
-	hp_1.translation_.y -= 0.05;
+
 	//弾の位置(右に行く)
 	if (changeFlag == 1)
 	{
@@ -132,16 +125,13 @@ void Player::Update()
 		return bullet->IsDead();
 		});
 	//行列の計算
-	hp_1.matWorld_ = playerMatworld->CreateMatWorld(worldTransform_);
-	//行列の転送
-	hp_1.TransferMatrix();
-	//行列の計算
 	worldTransform_.matWorld_ = playerMatworld->CreateMatWorld(worldTransform_);
 	//行列の転送
 	worldTransform_.TransferMatrix();
 
 	Attack();
 
+	sceneFlag = 1;
 	// 弾更新
 	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
 	{
@@ -153,8 +143,6 @@ void Player::Update()
 void Player::Draw(ViewProjection &viewProjection_)
 {
 	model_->Draw(hp_1, viewProjection_);
-
-	model_->Draw(hp_2, viewProjection_);
 
 	model_->Draw(worldTransform_, viewProjection_);
 	// 弾の描画

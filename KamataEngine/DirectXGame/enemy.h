@@ -16,6 +16,8 @@ public:
 		Approach,	//接近する
 		MoveLeft,	//左移動
 		MoveRight,	//右移動
+		MoveLeft2,	//左移動
+		MoveRight2,	//右移動
 		Leave,		//離脱する
 	};
 	/// <summary>
@@ -38,6 +40,12 @@ public:
 
 	//右移動
 	void MoveRight(float& appSpeed);
+
+	//左移動
+	void MoveLeft2(float& appSpeed);
+
+	//右移動
+	void MoveRight2(float& appSpeed);
 
 	/// <summary>
 	/// 描画
@@ -69,6 +77,19 @@ private:
 	//道のり
 	float m = 0;
 	float n = 0;
+	float m2 = 0;
+	float n2 = 0;
+	int count = 5;
+	int count2 = 5;
+	float time = 0.5f;
+	float time2 = 0.5f;
+	int timer = 120;
+
+	//速度を初期化
+	float speedY = -0.05f;
+	float speedX = 0.05f;
+	float speedX2 = 0.03f;
+
 	bool changeFlagL = 0;
 	bool changeFlagR = 0;
 	//デスフラグ
