@@ -14,7 +14,7 @@
 #include "Skydome.h"
 #include "WinApp.h"
 #include "Audio.h"
-
+#include "Hp.h"
 
 /// <summary>
 /// ゲームシーン
@@ -78,7 +78,7 @@ private: // メンバ変数
 	Model* modelSkydome_ = nullptr; //ゲーム背景モデル
 	Model* modelPlayer_ = nullptr; //プレイヤーモデル
 	Model* modelEnemy_ = nullptr; //敵モデル
-	
+	Model* modelHp_ = nullptr;	//残機モデル
 
 	//サウンド
 	uint32_t soundTitleBGM = 0; //タイトルBGM
@@ -110,6 +110,11 @@ private: // メンバ変数
 	Skydome* skydome_ = nullptr;
 	//画面
 	WinApp* winApp_ = nullptr;
+
+	//残機描画
+	Hp* hp_ = nullptr;
+	Hp* hp_2 = nullptr;
+	Hp* hp_3 = nullptr;
 
 	int scene = 0;
 

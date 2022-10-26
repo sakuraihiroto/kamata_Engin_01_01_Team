@@ -26,15 +26,9 @@ void Player::Initialize(Model* model)
 
 	//キャラクターの移動ベクトル
 	Vector3 move = { 0,-15,0 };//座標{x,y,z}
-	Vector3 hp1 = { 0,+20,0 };
-	Vector3 hp2 = { +15,+15,0 };
-	Vector3 hp3 = { +10,+10,0 };
 
 	//初期座標をセット
 	worldTransform_.translation_ = move;
-	hp_1.translation_ = hp1;
-	hp_2.translation_ = hp2;
-	hp_3.translation_ = hp3;
 
 }
 

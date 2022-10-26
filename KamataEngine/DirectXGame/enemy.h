@@ -33,7 +33,7 @@ public:
 	void UpdateW3();
 
 	//Ú‹ß
-	void Approach(float& appSpeed, float goal);
+	void Approach(float& appSpeed);
 
 	//¶ˆÚ“®
 	void MoveLeft(float& appSpeed);
